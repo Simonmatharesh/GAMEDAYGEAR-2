@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="product-details">
+        <div class="product-image">
+            <div class="carousel">
+                <button id="prevBtn">&#10094;</button>
+                <div class="carousel-images"></div>
+                <button id="nextBtn">&#10095;</button>
+            </div>
+        </div>
+        
+        <div class="product-info">
+            <h1 id="productTitle">Football Jersey</h1>
+            <p id="productPrice">$49.99</p>
+            <p id="productDescription">This is a high-quality vintage football jersey. Perfect for collectors and fans.</p>
+            <button class="addToCart">Add to Cart</button>
+            <a href="retro.html" class="back-to-shop">Back to Shop</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let product = getQueryParams();
+
+            // Set product details
+            document.getElementById("productTitle").textContent = product.name;
+            document.getElementById("productPrice").textContent = product.price;
+
+            let carouselContainer = document.querySelector(".carousel-images");
+            carouselContainer.innerHTML = ""; // Clear existing images
+
+            if (product.images.length > 0) {
+                product.images.forEach((imgSrc, index) => {
+                    let imgElement = document.createElement("img");
+                    imgElement.src = imgSrc;
+                    imgElement.classList.add("carousel-img");
+                    if (index === 0) imgElement.classList.add("active");
+                    carouselContainer.appendChild(imgElement);
+                });
+
+                setupCarousel();
+            } else {
+                carouselContainer.innerHTML = "<p>No images available</p>";
+            }
+
+            // 🔥 Fix: Ensure the button works!
+            let addToCartBtn = document.getElementById("addToCart");
+            let cartMessage = document.getElementById("cartMessage");
+
+            addToCartBtn.addEventListener("click", function () {
+                addToCart(product.name, product.price, product.images[0]); // Use first image
+                cartMessage.style.display = "block"; // Show success message
+                setTimeout(() => { cartMessage.style.display = "none"; }, 2000); // Hide after 2s
+            });
+
+            updateCartCount();
+        });
+
+        function getQueryParams() {
+            let params = new URLSearchParams(window.location.search);
+            let imagesParam = params.get("images") ? decodeURIComponent(params.get("images")) : "";
+            let imagesArray = imagesParam ? imagesParam.split(",") : [];
+
+            return {
+                name: decodeURIComponent(params.get("name")),
+                price: "$" + params.get("price"), // Ensure price format
+                images: imagesArray
+            };
+        }
+
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, image, quantity: 1 });
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            let cartIcon = document.querySelector(".cart-count");
+
+            if (cartIcon) {
+                cartIcon.textContent = totalItems;
+            }
+        }
+
+        function setupCarousel() {
+            let images = document.querySelectorAll(".carousel-img");
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.toggle("active", index === currentIndex);
+                });
+            }
+
+            document.getElementById("prevBtn").addEventListener("click", function () {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateCarousel();
+            });
+
+            document.getElementById("nextBtn").addEventListener("click", function () {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateCarousel();
+            });
+
+            updateCarousel(); // Initialize first image
+        }
+
+
+    </script>
+
+</body>
+</html>

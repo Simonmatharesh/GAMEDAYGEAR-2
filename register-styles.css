@@ -1,0 +1,269 @@
+:root {
+  --primary-color: #ff6b6b;
+  --secondary-color: #4ecdc4;
+  --text-color: #2d3436;
+  --bg-color: #f9f9f9;
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #dfe6e9;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  max-width: 1000px;
+  background-color: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.register-container {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 18px;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 12px;
+  border: 2px solid var(--gray);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+}
+
+.terms {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.terms label {
+  font-weight: 400;
+}
+
+.terms a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.terms a:hover {
+  text-decoration: underline;
+}
+
+.register-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.register-btn:hover {
+  background-color: #ff8787;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+}
+
+.register-footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.login-link {
+  font-size: 14px;
+}
+
+.login-link a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.register-image {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.register-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(255, 107, 107, 0.2), transparent);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.register-container {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column-reverse;
+    max-width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .register-container {
+    padding: 40px 20px;
+  }
+
+  .register-image {
+    height: 30vh;
+  }
+}
+
+/* Custom Checkbox */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--gray);
+  border-radius: 4px;
+  outline: none;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+input[type="checkbox"]:checked::before {
+  content: "✓";
+  display: block;
+  text-align: center;
+  color: var(--white);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+/* Focus States */
+input:focus,
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+}
+
+/* Password Strength Indicator (Optional) */
+.password-strength {
+  height: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  transition: var(--transition);
+}
+
+.weak {
+  background-color: #ff4757;
+  width: 33%;
+}
+.medium {
+  background-color: #ffa502;
+  width: 66%;
+}
+.strong {
+  background-color: #2ed573;
+  width: 100%;
+}
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - GAMEDAYGEAR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cart-styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">GAMEDAYGEAR</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">Your Cart</h1>
+            <div class="cart-grid">
+                <div class="cart-items">
+                    <div class="cart-item">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo-1690321608227-df2b9cf50821.jpg-eMGAcQz0E3xsWyvUmgCDRd2pZW6ZzO.jpeg" alt="Urban Hoodie" class="item-image">
+                        <div class="item-details">
+                            <h2 class="item-name">Urban Hoodie</h2>
+                            <p class="item-price">$89.99</p>
+                            <div class="item-quantity">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" value="1" min="1" class="quantity-input">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="cart-item">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo-1690321608227-df2b9cf50821.jpg-eMGAcQz0E3xsWyvUmgCDRd2pZW6ZzO.jpeg" alt="Street Jacket" class="item-image">
+                        <div class="item-details">
+                            <h2 class="item-name">Street Jacket</h2>
+                            <p class="item-price">$129.99</p>
+                            <div class="item-quantity">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" value="1" min="1" class="quantity-input">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="cart-summary">
+                    <h2 class="summary-title">Order Summary</h2>
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span>$219.98</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Shipping</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total</span>
+                        <span>$219.98</span>
+                    </div>
+                    <button class="checkout-btn">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 GAMEDAYGEAR. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
