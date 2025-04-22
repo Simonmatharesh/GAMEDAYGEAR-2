@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Boots - GAMEDAYGEAR</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: auto;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary.added {
+            background-color: #4ecdc4;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin: 60px 0 40px;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">GAMEDAYGEAR</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="essentials.html" class="active">Essentials</a></li>
+                <li><a href="retro.html">Retro</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="profile.html" class="icon-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </a>
+                <button class="icon-btn" id="chatButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                    </svg>
+                </button>
+                <a href="cart.html" class="icon-btn cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content container" style="margin-top: 100px;">
+        <h1 class="section-title">Football Boots Collection</h1>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,f=webp//pub/media/catalog/product//5/8/581f8360fb9973760151f591bcf773583c29e2e469e0548c22e8792867f0ef38.jpeg" alt="Football Boots">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Nike Mercurial Vapor Elite</h3>
+                    <p class="product-price">£189.99</p>
+                    <a href="productdetails.html?product=nike-mercurial-vapor-elite" class="btn-secondary">View Details</a>
+                    <button class="btn-primary add-to-cart" data-product-id="nike-mercurial-vapor-elite" data-product-name="Nike Mercurial Vapor Elite" data-product-price="189.99">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,f=webp//pub/media/catalog/product//6/0/60a2608c37650ec355bcf55e6ae7c1ee630c6b1b53593cf6d378187290d488f6.jpeg" alt="Football Boots">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Adidas Predator Edge+</h3>
+                    <p class="product-price">$199.99</p>
+                    <a href="productdetails.html?product=adidas-predator-edge" class="btn-secondary">View Details</a>
+                    <button class="btn-primary add-to-cart" data-product-id="adidas-predator-edge" data-product-name="Adidas Predator Edge+" data-product-price="199.99">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,f=webp//pub/media/catalog/product//5/b/5b25f7e39bc91f166803f63c5567ab47e89e214a23de2985de834779d2350d06.jpeg" alt="Football Boots">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Puma Future Z 1.4</h3>
+                    <p class="product-price">$169.99</p>
+                    <a href="productdetails.html?product=puma-future-z" class="btn-secondary">View Details</a>
+                    <button class="btn-primary add-to-cart" data-product-id="puma-future-z" data-product-name="Puma Future Z 1.4" data-product-price="169.99">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,f=webp//pub/media/catalog/product//8/7/874a416f51722740abf91b926183ca72a1bc112e6ef9f7e3b41e52928482a459.jpeg" alt="Football Boots">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Nike Phantom GT2 Elite</h3>
+                    <p class="product-price">$179.99</p>
+                    <a href="productdetails.html?product=nike-phantom-gt2" class="btn-secondary">View Details</a>
+                    <button class="btn-primary add-to-cart" data-product-id="nike-phantom-gt2" data-product-name="Nike Phantom GT2 Elite" data-product-price="179.99">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,f=webp//pub/media/catalog/product//5/7/5787492bdbed068c925239aada6d48b7dc6051c1f2d9cb7ff6a5970b1c108e11.jpeg" alt="Football Boots">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Adidas X Speedportal</h3>
+                    <p class="product-price">$189.99</p>
+                    <a href="productdetails.html?product=adidas-x-speedportal" class="btn-secondary">View Details</a>
+                    <button class="btn-primary add-to-cart" data-product-id="adidas-x-speedportal" data-product-name="Adidas X Speedportal" data-product-price="189.99">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,f=webp//pub/media/catalog/product//d/i/dia-101786.01-main_2_1.jpg" alt="Football Boots">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">New Balance Furon V7</h3>
+                    <p class="product-price">$159.99</p>
+                    <a href="productdetails.html?product=new-balance-furon-v7" class="btn-secondary">View Details</a>
+                    <button class="btn-primary add-to-cart" data-product-id="new-balance-furon-v7" data-product-name="New Balance Furon V7" data-product-price="159.99">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,f=webp//pub/media/catalog/product//d/i/dia-101786.01-main_2_1.jpg" alt="Football Boots">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Nike Tiempo Legend 9</h3>
+                    <p class="product-price">$174.99</p>
+                    <a href="productdetails.html?product=nike-tiempo-legend-9" class="btn-secondary">View Details</a>
+                    <button class="btn-primary add-to-cart" data-product-id="nike-tiempo-legend-9" data-product-name="Nike Tiempo Legend 9" data-product-price="174.99">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,f=webp//pub/media/catalog/product//0/2/021e7a06dd0b61b5a5fcfe705049ae6bfc698e5ef308e38c0040d4e38c96bdd5.jpeg" alt="Football Boots">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Puma Ultra 1.4</h3>
+                    <p class="product-price">$164.99</p>
+                    <a href="productdetails.html?product=puma-ultra-1-4" class="btn-secondary">View Details</a>
+                    <button class="btn-primary add-to-cart" data-product-id="puma-ultra-1-4" data-product-name="Puma Ultra 1.4" data-product-price="164.99">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,f=webp//pub/media/catalog/product//b/9/b9695399731-1_nb9yz3vil5enz72u.jpg" alt="Football Boots">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Adidas Copa Sense+</h3>
+                    <p class="product-price">$184.99</p>
+                    <a href="productdetails.html?product=adidas-copa-sense" class="btn-secondary">View Details</a>
+                    <button class="btn-primary add-to-cart" data-product-id="adidas-copa-sense" data-product-name="Adidas Copa Sense+" data-product-price="184.99">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">Facebook</a>
+                        <a href="#" class="social-icon">Twitter</a>
+                        <a href="#" class="social-icon">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GameDayGear. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="essentials.js"></script>
+</body>
+</html>
+<div id="chatModal" class="chat-modal">
+    <div class="chat-content">
+        <div class="chat-header">
+            <h3>AI Assistant</h3>
+            <button class="close-chat">&times;</button>
+        </div>
+        <div class="chat-body">
+            <div id="response" class="chat-response"></div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Ask me anything...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
+<style>
+.chat-modal {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.chat-content {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+
+.chat-header {
+    padding: 15px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-chat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.chat-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.chat-response {
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.chat-input {
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.chat-input button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background: #ff5252;
+}
+</style>
+<script>
+document.getElementById('chatButton').addEventListener('click', function() {
+    document.getElementById('chatModal').style.display = 'block';
+});
+
+document.querySelector('.close-chat').addEventListener('click', function() {
+    document.getElementById('chatModal').style.display = 'none';
+});
+
+function sendMessage() {
+        let userMessage = document.getElementById("userInput").value;
+        let responseElement = document.getElementById("response");
+
+        // Clear the previous response and show "Loading..."
+        responseElement.innerText = "Thinking...";
+
+        fetch("http://127.0.0.1:5000/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message: userMessage })
+        })
+        .then(response => response.json())  // Parse response as JSON
+        .then(data => {
+            if (data.reply) {
+                responseElement.innerText = data.reply; // Show AI response
+            } else {
+                responseElement.innerText = "Error: No reply received.";
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            responseElement.innerText = "Error communicating with AI.";
+        });
+    }
+</script>
+</html>

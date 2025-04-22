@@ -14,57 +14,53 @@
                 <a href="index.html" class="logo">GAMEDAYGEAR</a>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    
+                    <li><a href="retro.html">Retro</a></li>
                 </ul>
+                <div class="nav-actions">
+                    <button class="icon-btn cart-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <button class="icon-btn" id="chatButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
+
+    <div id="chatModal" class="chat-modal">
+        <div class="chat-content">
+            <div class="chat-header">
+                <h3>AI Assistant</h3>
+                <button class="close-chat">&times;</button>
+            </div>
+            <div class="chat-body">
+                <div id="response" class="chat-response"></div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Ask me anything...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
 
     <main class="main-content">
         <div class="container">
             <h1 class="page-title">Your Cart</h1>
             <div class="cart-grid">
-                <div class="cart-items">
-                    <div class="cart-item">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo-1690321608227-df2b9cf50821.jpg-eMGAcQz0E3xsWyvUmgCDRd2pZW6ZzO.jpeg" alt="Urban Hoodie" class="item-image">
-                        <div class="item-details">
-                            <h2 class="item-name">Urban Hoodie</h2>
-                            <p class="item-price">$89.99</p>
-                            <div class="item-quantity">
-                                <button class="quantity-btn minus">-</button>
-                                <input type="number" value="1" min="1" class="quantity-input">
-                                <button class="quantity-btn plus">+</button>
-                            </div>
-                        </div>
-                        <button class="remove-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="cart-item">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo-1690321608227-df2b9cf50821.jpg-eMGAcQz0E3xsWyvUmgCDRd2pZW6ZzO.jpeg" alt="Street Jacket" class="item-image">
-                        <div class="item-details">
-                            <h2 class="item-name">Street Jacket</h2>
-                            <p class="item-price">$129.99</p>
-                            <div class="item-quantity">
-                                <button class="quantity-btn minus">-</button>
-                                <input type="number" value="1" min="1" class="quantity-input">
-                                <button class="quantity-btn plus">+</button>
-                            </div>
-                        </div>
-                        <button class="remove-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be dynamically loaded here -->
                 </div>
                 <div class="cart-summary">
                     <h2 class="summary-title">Order Summary</h2>
                     <div class="summary-item">
                         <span>Subtotal</span>
-                        <span>$219.98</span>
+                        <span id="subtotal">$0.00</span>
                     </div>
                     <div class="summary-item">
                         <span>Shipping</span>
@@ -72,19 +68,266 @@
                     </div>
                     <div class="summary-item total">
                         <span>Total</span>
-                        <span>$219.98</span>
+                        <span id="total">$0.00</span>
                     </div>
-                    <button class="checkout-btn">Proceed to Checkout</button>
+                    <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 GAMEDAYGEAR. All rights reserved.</p>
-        </div>
-    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCartItems();
+            updateCartCount();
+        });
+
+        function displayCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContainer = document.getElementById('cartItems');
+            let subtotal = 0;
+
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+                updateTotals(0);
+                return;
+            }
+
+            cartContainer.innerHTML = cartItems.map((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                return `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <p>$${item.price.toFixed(2)}</p>
+                            <div class="quantity-controls">
+                                <button onclick="updateQuantity(${index}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="updateQuantity(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-item" onclick="removeItem(${index})">×</button>
+                    </div>
+                `;
+            }).join('');
+
+            updateTotals(subtotal);
+        }
+
+        function updateTotals(subtotal) {
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${subtotal.toFixed(2)}`;
+        }
+
+        function updateQuantity(index, change) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart[index].quantity = Math.max(1, cart[index].quantity + change);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCartItems();
+            updateCartCount();
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCartItems();
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            let cartIcon = document.querySelector('.cart-count');
+            if (cartIcon) {
+                cartIcon.textContent = totalItems;
+                cartIcon.style.display = totalItems > 0 ? 'block' : 'none';
+            }
+        }
+        document.getElementById('checkoutBtn').addEventListener('click', async function() {
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (!loggedInUser || !loggedInUser.email) {
+                alert('Please log in to proceed with checkout');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                // Get user's shipping address
+                const userResponse = await fetch(`http://localhost:5000/user/${loggedInUser.email}`);
+                const userData = await userResponse.json();
+                if (!userData.success) {
+                    throw new Error('Could not fetch user data');
+                }
+
+                // Prepare order data
+                const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                if (cartItems.length === 0) {
+                    alert('Your cart is empty');
+                    return;
+                }
+
+                const orderItems = cartItems.map(item => ({
+                    productName: item.name,
+                    quantity: item.quantity,
+                    price: item.price,
+                    image: item.image
+                }));
+
+                const totalAmount = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+                // Create order
+                const response = await fetch('http://localhost:5000/createOrder', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userEmail: loggedInUser.email,
+                        items: orderItems,
+                        totalAmount: totalAmount,
+                        shippingAddress: userData.user.address
+                    })
+                });
+
+                // Check if response is ok and is JSON
+                if (!response.ok) {
+                    const contentType = response.headers.get('content-type');
+                    if (contentType && contentType.includes('application/json')) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || 'Server error');
+                    } else {
+                        const errorText = await response.text();
+                        throw new Error(`Server error: ${response.status} - ${errorText}`);
+                    }
+                }
+
+                const result = await response.json();
+                if (result.success) {
+                    // Clear cart after successful order
+                    localStorage.removeItem('cart');
+                    alert('Order placed successfully!');
+                    window.location.href = 'profile.html';
+                } else {
+                    throw new Error(result.message || 'Failed to create order');
+                }
+            } catch (error) {
+                alert('Error creating order: ' + error.message);
+            }
+        });
+    </script>
+    <style>
+        .chat-modal {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .chat-content {
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+        }
+
+        .chat-header {
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .chat-body {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .chat-response {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .chat-input {
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .chat-input button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background: #ff5252;
+        }
+    </style>
+    <script>
+        document.getElementById('chatButton').addEventListener('click', function() {
+            document.getElementById('chatModal').style.display = 'block';
+        });
+
+        document.querySelector('.close-chat').addEventListener('click', function() {
+            document.getElementById('chatModal').style.display = 'none';
+        });
+
+        function sendMessage() {
+            let userMessage = document.getElementById("userInput").value;
+            let responseElement = document.getElementById("response");
+
+            responseElement.innerText = "Thinking...";
+
+            fetch("http://127.0.0.1:5000/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: userMessage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.reply) {
+                    responseElement.innerText = data.reply;
+                } else {
+                    responseElement.innerText = "Error: No reply received.";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                responseElement.innerText = "Error communicating with AI.";
+            });
+        }
+    </script>
 </body>
 </html>
 

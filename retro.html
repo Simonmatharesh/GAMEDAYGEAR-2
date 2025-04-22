@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 🔥 HEADER -->
+   
     <header class="header">
         <div class="container">
             <nav class="nav">
@@ -17,7 +17,7 @@
                     <li><a href="#new-arrivals">New Arrivals</a></li>
                     <li><a href="#collections">Collections</a></li>
                     <li><a href="retro.html">Retro</a></li>
-                    <li><a href="#women">Clearance</a></li>
+                    <li><a href="#w">Clearance</a></li>
                 </ul>
                 <div class="nav-actions">
                     <button class="icon-btn search-btn" button id="searchIcon">
@@ -40,14 +40,35 @@
                             <span class="cart-count"></span>
                         </button>
                         </a>
+                    <button class="icon-btn" id="chatButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                    </button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- 🔥 MAIN CONTENT -->
+    <div id="chatModal" class="chat-modal">
+        <div class="chat-content">
+            <div class="chat-header">
+                <h3>AI Assistant</h3>
+                <button class="close-chat">&times;</button>
+            </div>
+            <div class="chat-body">
+                <div id="response" class="chat-response"></div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Ask me anything...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+   
     <div class="main-container">
-        <!-- 🔥 SIDEBAR (Filters) -->
+       
         <aside class="sidebar">
             <h3>Sort By:</h3>
             <select id="sortSelect" onchange="sortProducts()">
@@ -60,7 +81,7 @@
         </aside>
         
 
-        <!-- 🔥 RETRO COLLECTION -->
+       
         <section class="retro-section">
             <h2 class="section-title">Retro Collection</h2>
             <div class="product-grid">
@@ -73,11 +94,11 @@
 
                 </div>
                 
-                <div class="product-card" data-name="Barcelona 2014 Away">
-                    <img src="https://www.cultkits.com/cdn/shop/files/IMG_0139.heic?v=1739460920&width=3000" alt="Retro Shirt">
-                    <h3 class="product-title">Barcelona 2014 Away</h3>
+                <div class="product-card" data-name="Manchester United 2020/21 third">
+                    <img src="https://www.cultkits.com/cdn/shop/files/IMG_1999_f72db690-c4d3-4dcc-8cd5-885c6c2ebcf5.heic?v=1741704557&width=3000" alt="Retro Shirt">
+                    <h3 class="product-title">Manchester United 2020/21 Third</h3>
                     <p class="product-price">$59.99</p>
-                    <a href="productdetails.html?name=Barcelona%2014&price=59.99&images=https://www.cultkits.com/cdn/shop/files/IMG_0138.heic?v=1739460920&width=3000,https://www.cultkits.com/cdn/shop/files/IMG_0139.heic?v=1739460920&width=3000" class="btn btn-secondary">View Details</a>
+                    <a href="productdetails.html?name=Manchester United 2020/21 Third&price=59.99&images=https://www.cultkits.com/cdn/shop/files/IMG_1999_f72db690-c4d3-4dcc-8cd5-885c6c2ebcf5.heic?v=1741704557&width=3000,https://www.cultkits.com/cdn/shop/files/IMG_1998_ce16fd74-6671-49be-bae7-4b9113316cd7.heic?v=1741704557&width%3D3000" class="btn btn-secondary">View Details</a>
                 </div>
                 <div class="product-card" data-name="Barcelona 2014 Home">
                     <img src="https://www.cultkits.com/cdn/shop/files/IMG_2542.heic?v=1738755069&width=3000" alt="Retro Shirt">
@@ -93,11 +114,11 @@
                     <a href="productdetails.html?name=Barcelona 2007&price=44.99&images=https://www.cultkits.com/cdn/shop/files/IMG_2482.heic?v=1738161797&width=3000" class="btn btn-secondary">View Details</a>
                 </div>
                 
-                <div class="product-card" data-name="Barcelona 2006 Away">
-                    <img src="https://www.cultkits.com/cdn/shop/files/IMG_3023.heic?v=1738755718&width=3000" alt="Retro Shirt">
-                    <h3 class="product-title">Barcelona 2006 Away</h3>
+                <div class="product-card" data-name="Real Madrid 2004/05 Home">
+                    <img src="https://www.cultkits.com/cdn/shop/files/image00153_1e703db8-8239-4e2a-a9df-db4adb9504f6.jpg?v=1730732738&width=3000" alt="Retro Shirt">
+                    <h3 class="product-title">Real Madrid 2004/05 Home</h3>
                     <p class="product-price">$64.99</p>
-                    <a href="productdetails.html?name=Barcelona 2006&price=64.99&images=https://www.cultkits.com/cdn/shop/files/IMG_3022.heic?v=1738755718&width=3000" class="btn btn-secondary">View Details</a>
+                    <a href="productdetails.html?name=Real Madrid 2004/05&price=64.99&images=https://www.cultkits.com/cdn/shop/files/image00153_1e703db8-8239-4e2a-a9df-db4adb9504f6.jpg?v=1730732738&width=3000,https://www.cultkits.com/cdn/shop/files/image00154_f85400c5-97e7-4af7-9bad-f57f4a2eaff0.jpg?v=1730732738&width=3000" class="btn btn-secondary">View Details</a>
                     
                 </div>
             
@@ -111,13 +132,13 @@
                     <img src="https://www.cultkits.com/cdn/shop/files/IMG_6616_6521b882-e52a-48bb-82a1-56328e109654.jpg?v=1735657607&width=3000" alt="Retro Shirt">
                     <h3 class="product-title">Barcelona 2015 Away</h3>
                     <p class="product-price">$59.99</p>
-                    <a href="productdetails.html?name=Barcelona 2015&price=59.99&images=jersey1.jpg" class="btn btn-secondary">View Details</a>
+                    <a href="productdetails.html?name=Barcelona 2015&price=59.99&images=https://www.cultkits.com/cdn/shop/files/IMG_6616_6521b882-e52a-48bb-82a1-56328e109654.jpg?v=1735657607&width=3000" class="btn btn-secondary">View Details</a>
                 </div>
-                <div class="product-card" data-name="Barcelona 2009 Away">
-                    <img src="https://www.cultkits.com/cdn/shop/files/2008_10_BARCELONA_INIESTA_8_AWAY_SHIRT_XL_NIKE.jpg?v=1729691490&width=3000" alt="Retro Shirt">
-                    <h3 class="product-title">Barcelona Away 2009</h3>
+                <div class="product-card" data-name="Chelsea 2013/14 Away">
+                    <img src="https://www.cultkits.com/cdn/shop/files/IMG_5251.heic?v=1741360177&width=3000" alt="Retro Shirt">
+                    <h3 class="product-title">Chelsea 2013/14 Away</h3>
                     <p class="product-price">$79.99</p>
-                    <a href="productdetails.html?name=Barcelona 2009&price=79.99&images=jersey1.jpg" class="btn btn-secondary">View Details</a>
+                    <a href="productdetails.html?name=Chelsea 2013/14 Away&price=79.99&images=https://www.cultkits.com/cdn/shop/files/IMG_5251.heic?v=1741360177&width=3000" class="btn btn-secondary">View Details</a>
                 </div>
                 <div class="product-card" data-name="Barcelona 2016 Third">
                     <img src="https://www.cultkits.com/cdn/shop/files/image00186_0d703d16-4564-4c40-afeb-004e4db04ad1.jpg?v=1727874728&width=3000" alt="Retro Shirt">
@@ -166,9 +187,7 @@
     
 
     
-    
 
-    <!-- 🔥 FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -212,7 +231,7 @@
         </div>
     </footer>
 
-    <!-- 🔥 SORT FUNCTION -->
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
     const faqItems = document.querySelectorAll(".faq-item");
@@ -221,7 +240,7 @@
         item.addEventListener("click", function () {
             const answer = this.querySelector(".faq-answer");
             
-            // Toggle answer visibility
+            
             answer.style.display = answer.style.display === "block" ? "none" : "block";
         });
     });
@@ -263,10 +282,10 @@
         });
     }
 
-    // **Clear the current product grid**
+   
     productGrid.innerHTML = "";
 
-    // **Append the sorted products back into the grid**
+   
     sortedProducts.forEach(product => productGrid.appendChild(product));
 }
 
@@ -281,13 +300,13 @@
     let searchContainer = document.getElementById("searchContainer");
     
 
-    // Make sure the search bar appears when clicking the search icon
+    
     if (searchIcon) {
         searchIcon.addEventListener("click", function () {
             searchIcon.style.display = "none"; 
             console.log("Search icon clicked!"); // DEBUG
             searchContainer.classList.toggle("hidden");
-            searchInput.focus(); // Auto-focus when search bar opens
+            searchInput.focus(); 
         });
     }
    
@@ -301,7 +320,7 @@
         });
     }
 
-    // Handle Enter key press in the search bar
+    
     if (searchInput) {
         searchInput.addEventListener("keyup", function (event) {
             if (event.key === "Enter") {
@@ -348,6 +367,118 @@
     }
 });
 
+    </script>
+    <style>
+        .chat-modal {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .chat-content {
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+        }
+
+        .chat-header {
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .chat-body {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .chat-response {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .chat-input {
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .chat-input button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background: #ff5252;
+        }
+    </style>
+    <script>
+        document.getElementById('chatButton').addEventListener('click', function() {
+            document.getElementById('chatModal').style.display = 'block';
+        });
+
+        document.querySelector('.close-chat').addEventListener('click', function() {
+            document.getElementById('chatModal').style.display = 'none';
+        });
+
+        function sendMessage() {
+            let userMessage = document.getElementById("userInput").value;
+            let responseElement = document.getElementById("response");
+
+            responseElement.innerText = "Thinking...";
+
+            fetch("http://127.0.0.1:5000/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: userMessage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.reply) {
+                    responseElement.innerText = data.reply;
+                } else {
+                    responseElement.innerText = "Error: No reply received.";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                responseElement.innerText = "Error communicating with AI.";
+            });
+        }
     </script>
 </body>
 </html>

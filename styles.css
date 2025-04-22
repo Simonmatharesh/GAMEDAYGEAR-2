@@ -326,7 +326,7 @@ body {
   padding: 12px 20px;
   font-size: 16px;
   border: none;
-  border-radius: 30px 0 0 30px;
+  border-radius: 30px;
 }
 
 .newsletter-form .btn {
@@ -592,145 +592,196 @@ body {
   font-size: 18px;
   line-height: 1.6;
 }
-/* Product Details Page */
-/* 🔥 Bigger Main Card */
-/* 🔥 Bigger Main Card */
 .product-details {
-  max-width: 650px; /* Wider */
-  height: 610px;  /* Taller - So nothing gets blocked */
-  margin: 50px auto;
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-   /* Allow scrolling if needed */
+  display: flex;
+  gap: 2rem;
+  padding: 120px 5% 50px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* 🔹 BIGGER Carousel - Fits Full Jersey */
-.carousel {
-  position: relative;
-  width: 250px; /* 🔥 Wider */
-  height: 850px; /* 🔥 Taller */
-  margin: auto;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-/* 🔹 Carousel Images - Fully Visible */
-.carousel-images img {
+.header {
+  position: fixed;
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Full jersey will be visible */
-  border-radius: 12px;
+  background: white;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+#searchContainer.hidden {
   display: none;
 }
 
-.carousel-images img.active {
+#searchInput {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+#searchBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.product-image {
+  flex: 1;
+  max-width: 600px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  background: #f8f8f8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.carousel-images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+}
+
+.carousel-img {
+  display: none;
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+.carousel-img.active {
   display: block;
 }
 
-/* 🔹 Arrows - Properly Positioned */
 #prevBtn, #nextBtn {
   position: absolute;
-  top: 20%;
+  top: 50%;
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 10px;
+  padding: 1rem;
   cursor: pointer;
-  border-radius: 30%;
-  font-size: 20px;
-  transition: 0.3s;
+  font-size: 1.2rem;
+  z-index: 2;
+  transition: background 0.3s;
 }
-
-#prevBtn { left: 10px; }
-#nextBtn { right: 10px; }
 
 #prevBtn:hover, #nextBtn:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7);
 }
 
-/* 🔹 Product Info - No More Overlap */
+#prevBtn {
+  left: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+#nextBtn {
+  right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
 .product-info {
-  margin-top: 20px;
-  padding: 10px;
-  font-family: "Poppins", sans-serif;
+  flex: 1;
+  padding: 2rem;
 }
 
-/* 🔹 Name - Always Visible */
 #productTitle {
-  font-size: 28px;
-  font-weight: bold;
-  margin-top: 15px; /* Space so it's visible */
-  font-family: "Poppins", sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
 }
 
-/* 🔹 Price - Styled Nicely */
 #productPrice {
-  font-size: 26px;
-  font-weight: bold;
-  color: #e63946;
-  margin: 10px 0;
+  font-size: 2rem;
+  color: #2c5282;
+  margin-bottom: 1.5rem;
 }
 
-/* 🔹 Buttons - Look Better */
-#addToCart {
-  display: inline-block;
-  background: #28a745;
+#productDescription {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.addToCart {
+  background: #2c5282;
   color: white;
   border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 5px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
-  transition: 0.3s;
+  transition: background 0.3s;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
-.add-to-cart:hover {
-  background: #c5303b;
+.addToCart:hover {
+  background: #2d3748;
 }
 
 .back-to-shop {
   display: inline-block;
-  margin-top: 15px;
+  color: #2c5282;
   text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  border-bottom: 2px solid #333;
-  transition: 0.3s;
+  margin-top: 1rem;
+  font-weight: 500;
 }
 
 .back-to-shop:hover {
-  color: #e63946;
-  border-bottom: 2px solid #e63946;
+  text-decoration: underline;
 }
 
-.hidden {
-  display: none;
-}
-
-#searchContainer {
-  margin-top: 10px;
-  /* Makes sure it appears properly */
-  gap: 5px;
-}
-
-#searchInput {
-  padding: 8px;
-  width: 200px;
-  border: 1px solid #ccc;
-}
-
-#searchBtn {
-  padding: 8px;
-  background-color: #333;
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #e53e3e;
   color: white;
-  border: none;
-  cursor: pointer;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .product-details {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .product-image {
+        max-width: 100%;
+    }
+
+    .carousel-images {
+        min-height: 400px;
+    }
+
+    .product-info {
+        padding: 1rem;
+    }
+
+    #productTitle {
+        font-size: 2rem;
+    }
 }
 
 

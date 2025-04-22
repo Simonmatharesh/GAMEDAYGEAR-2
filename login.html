@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - URBAN WEAR</title>
+    <title>Login - GAMEDAYGEAR</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="login-styles.css">
 </head>
@@ -55,13 +55,12 @@
             const data = await response.json();
         
             if (data.success) {
-                // ✅ Store user data in localStorage
-                localStorage.setItem("loggedInUser", JSON.stringify({ email }));
-    
-                // ✅ Redirect to index.html
-                window.location.href = "index.html";
+                // Store user's email as token and user data
+                localStorage.setItem('token', data.user.email);
+                localStorage.setItem('userData', JSON.stringify(data.user));
+                window.location.href = "profile.html";
             } else {
-                alert(data.message); // Show error message
+                alert(data.message); 
             }
         });
     </script>

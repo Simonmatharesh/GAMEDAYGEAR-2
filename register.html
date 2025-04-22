@@ -82,3 +82,80 @@
 </body>
 </html>
 
+<script>
+    document.querySelector(".register-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Get form values
+        const fullName = document.getElementById("fullname").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirm-password").value;
+        const phone = document.getElementById("phone").value;
+        const address = document.getElementById("address").value;
+
+        // Validation checks
+        let errors = [];
+
+        // Full Name validation
+        if (fullName.trim().length < 2) {
+            errors.push("Full name must be at least 2 characters long");
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            errors.push("Please enter a valid email address");
+        }
+
+        // Password validation
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            errors.push("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character");
+        }
+
+        // Confirm password validation
+        if (password !== confirmPassword) {
+            errors.push("Passwords do not match");
+        }
+
+        // Phone validation
+        const phoneRegex = /^\+?[1-9][0-9]{7,14}$/;
+        if (!phoneRegex.test(phone)) {
+            errors.push("Please enter a valid phone number");
+        }
+
+        // Address validation
+        if (address.trim().length < 5) {
+            errors.push("Please enter a valid address");
+        }
+
+        // If there are validation errors, display them and prevent form submission
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+            return;
+        }
+
+        // If validation passes, proceed with registration
+        try {
+            const response = await fetch("http://localhost:5000/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ fullName, email, password, phone, address })
+            });
+
+            const data = await response.json();
+            alert(data.message);
+            if (response.ok) {
+                window.location.href = "login.html";
+            }
+        } catch (error) {
+            alert("Error during registration: " + error.message);
+        }
+    });
+</script>
+    
+    
+</body>
+</html>
+

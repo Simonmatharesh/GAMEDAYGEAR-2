@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GAMEDAYGEAR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            margin-top: 100px;
+        }
+
+        .founder-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            display: block;
+            object-fit: cover;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 40px;
+        }
+
+        .mission-box {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .mission-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .mission-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .value-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">GAMEDAYGEAR</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="essentials.html">Essentials</a></li>
+                <li><a href="retro.html">Retro</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="profile.html" class="icon-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </a>
+                <a href="cart.html" class="icon-btn cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="about-section">
+            <h1 class="about-title">Our Story</h1>
+            <img src="https://i0.web.de/image/160/31376160,pd=3/lionel-messi-murtasa-ahmadi.jpg" alt="Lionel Messi" class="founder-image">
+            
+            <div class="about-content">
+                <p>Welcome to GameDayGear, a passion project turned reality by Simon Mathew. My journey with football jerseys began when I was just 12 years old, captivated by the rich history and stories woven into each design. What started as a young boy's fascination evolved into a serious collection when I turned 18, marking the beginning of a lifelong dedication to preserving and sharing football's heritage.</p>
+                
+                <p>Growing up in India, I recognized the challenge many football enthusiasts faced: accessing authentic retro jerseys. This realization sparked the idea for GameDayGear. Our mission is simple yet powerful - to bridge this gap and make genuine retro football jerseys accessible to Indian football fans, ensuring that everyone can own a piece of football history.</p>
+            </div>
+
+            <div class="mission-box">
+                <h2 class="mission-title">Our Mission</h2>
+                <p class="mission-text">To provide authentic retro football jerseys to Indian football enthusiasts, preserving the heritage of the beautiful game while making it accessible to everyone who shares our passion.</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3 class="value-title">Authenticity</h3>
+                    <p class="value-text">We guarantee the authenticity of every jersey in our collection, ensuring you receive genuine pieces of football history.</p>
+                </div>
+                <div class="value-card">
+                    <h3 class="value-title">Accessibility</h3>
+                    <p class="value-text">Making retro football jerseys accessible to Indian fans through competitive pricing and reliable delivery.</p>
+                </div>
+                <div class="value-card">
+                    <h3 class="value-title">Community</h3>
+                    <p class="value-text">Building a community of football enthusiasts who share our passion for the sport's rich heritage and iconic moments.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">Facebook</a>
+                        <a href="#" class="social-icon">Twitter</a>
+                        <a href="#" class="social-icon">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GameDayGear. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
