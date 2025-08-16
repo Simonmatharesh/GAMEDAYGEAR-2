@@ -1,10 +1,11 @@
 const express = require("express");
+const Stripe = require("stripe");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const User = require("./User"); 
 const Order = require("./Order"); 
 const adminRoutes = require('./admin-api');
-
+const stripe = new Stripe("sk_test_51RwcMmFa94hu4vqgTb5wFCkajgEVeJdkFmFSCo3g3wakbGV8tT5UasyYHwXllTKRyi9VZemOliJtpG9oARYv0I7t00ga11gM5e");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -137,6 +138,39 @@ app.get("/api/orders/user", async (req, res) => {
         });
     }
 });
+
+// ✅ Create Stripe Checkout Session
+app.post("/create-checkout-session", async (req, res) => {
+  try {
+    const cartItems = req.body.items; // ← get it from frontend
+    if (!cartItems || cartItems.length === 0) {
+      return res.status(400).json({ error: "Cart is empty" });
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: cartItems.map(item => ({
+        price_data: {
+          currency: 'usd',
+          product_data: { name: item.name },
+          unit_amount: Math.round(item.price * 100), // in cents
+        },
+        quantity: item.quantity
+      })),
+      mode: 'payment',
+      success_url: 'http://localhost:5000/success',
+      cancel_url: 'http://localhost:5000/cancel'
+    });
+
+    res.json({ url: session.url });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+
 
 app.post("/createOrder", async (req, res) => {
     try {

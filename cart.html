@@ -328,6 +328,49 @@
             });
         }
     </script>
+    <script src="https://js.stripe.com/v3/"></script>
+<script>
+const stripe = Stripe("pk_test_51RwcMmFa94hu4vqgbJbjI5xbZI1NauOQ7CiC0Tv3bIMavvpihALkOlgeoj48JzpMh0XwNlz3OxXxBu42wRy1poyD00Y2i8mYLN");
+
+document.getElementById("checkoutBtn").addEventListener("click", async function() {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!loggedInUser || !loggedInUser.email) {
+        alert("Please log in to proceed with checkout");
+        window.location.href = "login.html";
+        return;
+    }
+
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    if (cartItems.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    try {
+        // Call backend to create checkout session
+        const response = await fetch("http://localhost:5000/create-checkout-session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                userEmail: loggedInUser.email,
+                items: cartItems
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.url) {
+            window.location.href = data.url; // redirect to Stripe checkout
+        } else {
+            alert("Error creating Stripe session");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Checkout error: " + error.message);
+    }
+});
+</script>
+
 </body>
 </html>
 

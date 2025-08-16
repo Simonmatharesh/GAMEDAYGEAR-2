@@ -55,13 +55,13 @@
             const data = await response.json();
         
             if (data.success) {
-                // Store user's email as token and user data
-                localStorage.setItem('token', data.user.email);
-                localStorage.setItem('userData', JSON.stringify(data.user));
-                window.location.href = "profile.html";
-            } else {
-                alert(data.message); 
-            }
+    // Store the user for checkout
+    localStorage.setItem('loggedInUser', JSON.stringify(data.user));
+    window.location.href = "profile.html";
+} else {
+    alert(data.message);
+}
+
         });
     </script>
     
