@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Configure API key
-genai.configure(api_key="AIzaSyDXL4Gq-Dyu72FphH4VuC10mGk9GLWWGRg")
+genai.configure(api_key="")
 
 @app.route('/chat', methods=['POST'])
 def chat():
